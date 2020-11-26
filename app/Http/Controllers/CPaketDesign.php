@@ -7,26 +7,14 @@ use Illuminate\Http\Request;
 
 class CPaketDesign extends Controller
 {
-    public function paketdesignUser(Request $request)
+  
+    public function index(Request $request)
     {
       if($request->has('cari')){
         $paketdesigns = paketdesign::where('Kategori','LIKE','%'.$request->cari.'%')->get();
       }else{
         $paketdesigns = paketdesign::all();
       }
-      return view('User.paketdesignUser',['paketdesigns' => $paketdesigns]);
-    }
-
-    public function lihat(paketdesign $paketdesign)
-    {
-
-      return view('User.detailpaketUser', compact('paketdesign'));
-
-    }
-
-    public function index()
-    {
-        $paketdesigns = paketdesign::all();
         return view('Designer.paketdesign', ['paketdesigns' => $paketdesigns]);
     }
 

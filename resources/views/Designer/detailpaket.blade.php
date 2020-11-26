@@ -23,7 +23,9 @@
 
         <!-- edit data -->
         <!-- <div class="col-md-1"></div> -->
+        @if (auth()->user()->role == 'Designers')
         <a href="{{$paketdesign->IdPaket}}/edit" class="btn btn-primary col-md-4">Edit Data</a>
+        @endif
         <!-- <a href="/paketdesign" class="btn btn-danger col-md-4">Batalkan</a> -->
         <!-- Hapus data
         <form action="{{ $paketdesign->IdPaket }}" method="POST">

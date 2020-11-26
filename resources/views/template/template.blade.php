@@ -13,6 +13,10 @@
       setTimeout(function(){
         $('#myModal3').modal('show')
       }, 1000);
+
+      setTimeout(function(){
+        $('#modalregis').modal('show')
+      }, 1000);
     </script>
   </head>
   <body>

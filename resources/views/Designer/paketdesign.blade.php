@@ -34,7 +34,9 @@
       </div>
       @endforeach
     </div>
+    @if (auth()->user()->role == 'Designers')
     <a href="/paketdesign/create" class="btn btn-primary py-3 px-4">Tambah Data</a>
+    @endif
   </div>
 </section>
 

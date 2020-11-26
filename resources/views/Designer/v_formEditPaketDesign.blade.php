@@ -11,46 +11,47 @@
       <div class="form-group">
         <label for="NamaPaketRumah"> Masukkan Nama Paket Design Rumah Anda :</label>
         <input type="text" class="form-control" placeholder="Ex : Paket Hemat" name="NamaPaketRumah"
-        value="{{$m_DataPaketDesign->NamaPaketRumah}}">
+        value="{{$m_DataPaketDesign->NamaPaketRumah}}" required>
       </div>
       <div class="form-group">
         <label for="KetegoriRumah"> Masukkan Kategori Paket Design Rumah Anda :</label>
         <input type="text" class="form-control" placeholder="Ex : Minimalis " name="KetegoriRumah"
-        value="{{$m_DataPaketDesign->KetegoriRumah}}" >
+        value="{{$m_DataPaketDesign->KetegoriRumah}}" required>
       </div>
       <div class="form-group">
         <label for="LuasBangun"> Masukkan Luas Bangunan :</label>
         <input type="text" class="form-control" placeholder="Ex : ruang tamu" name="LuasBangun"
-        value="{{$m_DataPaketDesign->LuasBangun}}">
+        value="{{$m_DataPaketDesign->LuasBangun}}" required>
       </div>
       <div class="form-group">
         <label for="JumlahLantai"> Masukkan Jumlah Lantai :</label>
         <input type="text" class="form-control" placeholder="Ex : 20m x 20m" name="JumlahLantai"
-        value="{{$m_DataPaketDesign->JumlahLantai}}">
+        value="{{$m_DataPaketDesign->JumlahLantai}}" required>
       </div>
       <div class="form-group">
         <label for="TinggiBangun"> Masukkan Tinggi Ruangan :</label>
         <input type="text" name="TinggiBangun" class="form-control" placeholder="Ex : 7m"
-          value="{{$m_DataPaketDesign->TinggiBangun}}">
+          value="{{$m_DataPaketDesign->TinggiBangun}}" required>
       </div>
       <div class="form-group">
         <label for="JumlahKamar"> Masukkan Jumlah Kamar :</label>
         <input type="text" name="JumlahKamar" class="form-control" placeholder="Ex : 10-20"
-          value="{{$m_DataPaketDesign->JumlahKamar}}">
+          value="{{$m_DataPaketDesign->JumlahKamar}}" required>
       </div>
       <div class="form-group">
         <label for="RangeHarga"> Masukkan Range Harga :</label>
         <input type="text" name="RangeHarga" class="form-control" placeholder="Ex : 10-20"
-          value="{{$m_DataPaketDesign->RangeHarga}}" >
+          value="{{$m_DataPaketDesign->RangeHarga}}" required>
       </div>
       <div class="form-group">
         <label for="WaktuPembuatan"> Masukkan Waktu Pembuatan :</label>
         <input type="text" name="WaktuPembuatan" class="form-control" placeholder="Ex : 10-20"
-          value="{{$m_DataPaketDesign->WaktuPembuatan}}" >
+          value="{{$m_DataPaketDesign->WaktuPembuatan}}" required >
       </div>
       <div class="form-group">
         <label for="Keterangan"> Masukkan Keterangan :</label>
-        <textarea name="Keterangan" cols="30" rows="7" class="form-control" placeholder="Keterangan" >
+        <textarea name="Keterangan" cols="30" rows="7" class="form-control" placeholder="Keterangan"
+        required >
           {{$m_DataPaketDesign->Keterangan}}</textarea>
       </div>
       <div class="form-group{{$errors->has('GamabarRumah') ? 'has-error' : ''}}">
