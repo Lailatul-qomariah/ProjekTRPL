@@ -28,6 +28,7 @@
             <ul class="property_list">
               <li><span class="flaticon-bed">Luas : {{ $paketdesign->Luas }} </span></li>
               <li><span class="flaticon-floor-plan"></span>Tinggi :{{ $paketdesign->TinggiRuang }} </li>
+              
             </ul>
           </div>
         </div>

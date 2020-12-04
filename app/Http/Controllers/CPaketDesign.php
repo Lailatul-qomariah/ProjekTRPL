@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\paketdesign;
 use Illuminate\Http\Request;
+use App\User;
 
 class CPaketDesign extends Controller
 {
-  
+
     public function index(Request $request)
     {
       if($request->has('cari')){
@@ -17,7 +18,12 @@ class CPaketDesign extends Controller
       }
         return view('Designer.paketdesign', ['paketdesigns' => $paketdesigns]);
     }
-
+    public function createPesananInterior(paketdesign $paketdesign)
+    {
+        // $userid = Auth(user()->id);
+        return view('User.v_fpdesigninterior', compact('paketdesign'));
+        // dd($userid);
+    }
 
     public function create()
     {
@@ -51,6 +57,7 @@ class CPaketDesign extends Controller
         $paketdesign -> RangeHarga = $request -> RangeHarga;
         $paketdesign -> Keterangan = $request -> Keterangan;
         $paketdesign -> Gambar = $namagambar;
+        $paketdesign -> WaktuPembuatan = $request -> WaktuPembuatan;
 
         $gambar->move(public_path().'/assets/images',$namagambar);
         $paketdesign->save();

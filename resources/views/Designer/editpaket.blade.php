@@ -39,6 +39,11 @@
         value="{{ $paketdesign->RangeHarga}}">
       </div>
       <div class="form-group">
+        <label for="WaktuPembuatan"> Masukkan Waktu Pembuatan :</label>
+        <input type="text" name="WaktuPembuatan" class="form-control" placeholder="Ex : 10-20"
+          value="{{$m_DataPaketDesign->WaktuPembuatan}}" required >
+      </div>
+      <div class="form-group">
         <label for="Keterangan"> Masukkan Keterangan :</label>
         <textarea name="Keterangan" id="" cols="30" rows="7" class="form-control" placeholder="Keterangan"
         >{{ $paketdesign->Keterangan}}</textarea>

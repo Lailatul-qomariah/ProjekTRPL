@@ -24,6 +24,10 @@
         @if (auth()->user()->role == 'Designers')
         <a href="/designrumah/{{$m_DataPaketDesign->idPaketRumah}}/edit" class="btn btn-primary col-md-4">Edit Data</a>
         @endif
+
+        @if (auth()->user()->role == 'Customers')
+        <a href="/fpdesignrumah/{{$m_DataPaketDesign->idPaketRumah}}" class="btn btn-primary col-md-4">Pesan Paket</a>
+        @endif
       </div>
     </div>
   </div>

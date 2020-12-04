@@ -22,8 +22,8 @@ class CreateDatapaketdesignsTable extends Migration
           $table->string('TinggiBangun');
           $table->string('JumlahKamar');
           $table->string('Keterangan');
-          $table->string('RangeHarga');
-          $table->string('WaktuPembuatan');
+          $table->bigInteger('RangeHarga');
+          $table->Integer('WaktuPembuatan');
           $table->string('GamabarRumah');
           $table->timestamps();
         });

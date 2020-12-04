@@ -13,12 +13,12 @@
           <p class="card-text">{{ $paketdesign->Keterangan}}</p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"> Jenis Ruangan : {{ $paketdesign->JenisRuang}}</li>
           <li class="list-group-item"> Kategori      : {{ $paketdesign->Kategori}}</li>
-          <li class="list-group-item">Tinggi Ruangan : {{ $paketdesign->TinggiRuang}}</li>
+          <li class="list-group-item"> Jenis Ruangan : {{ $paketdesign->JenisRuang}}</li>
           <li class="list-group-item">Luas Ruangan   : {{ $paketdesign->Luas}}</li>
+          <li class="list-group-item">Tinggi Ruangan : {{ $paketdesign->TinggiRuang}}</li>
           <li class="list-group-item">Range Harga    : {{ $paketdesign->RangeHarga}}</li>
-          <li class="list-group-item">Range Harga    : {{ $paketdesign->RangeHarga}}</li>
+          <li class="list-group-item">Waktu Pembuatan: {{ $paketdesign->WaktuPembuatan}}</li>
         </ul>
 
         <!-- edit data -->
@@ -26,6 +26,10 @@
         @if (auth()->user()->role == 'Designers')
         <a href="{{$paketdesign->IdPaket}}/edit" class="btn btn-primary col-md-4">Edit Data</a>
         @endif
+        @if (auth()->user()->role == 'Customers')
+        <a href="/fpdesigninterior/{{$paketdesign->IdPaket}}" class="btn btn-primary col-md-4">Pesan Paket</a>
+        @endif
+
         <!-- <a href="/paketdesign" class="btn btn-danger col-md-4">Batalkan</a> -->
         <!-- Hapus data
         <form action="{{ $paketdesign->IdPaket }}" method="POST">

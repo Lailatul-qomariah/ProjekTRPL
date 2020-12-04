@@ -145,10 +145,33 @@
           </div>
         @endif
       </div>
+      <div class="form-group{{$errors->has('WaktuPembuatan') ? 'has-error' : ''}}">
+        <label for="WaktuPembuatan"> Masukkan Waktu Pembuatan :</label>
+        <input type="text" name="WaktuPembuatan" class="form-control" placeholder="Contoh : 10-20 hari"
+        value="{{old('WaktuPembuatan')}}">
+        @if($errors->has('WaktuPembuatan'))
+        <button data-toggle="modal" data-target="#myModal3" style="display:none;" class="but"></button>
+          <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel">Data Tidak Boleh Kosong</h4>
+                      </div>
+                      <div class="modal-body">
+                          <h4>Masukkan Waktu Pembuatan Design Rumah Dengan Benar</h4>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        @endif
+      </div>
 
       <div class="form-group {{$errors->has('Keterangan') ? 'has-error' : ''}}">
         <label for="Keterangan"> Masukkan Keterangan :</label>
-        <textarea name="Keterangan" cols="30" rows="7" class="form-control" placeholder="Keterangan" >{{old('Keterangan')}}
+        <textarea name="Keterangan" cols="30" rows="7" class="form-control" placeholder="Keterangan" >{{old('Gambar')}}</textarea>
         @if($errors->has('Keterangan'))
         <button data-toggle="modal" data-target="#myModal3" style="display:none;" class="but"></button>
           <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
@@ -201,8 +224,5 @@
   </div>
 </div>
 </section>
-
-
-
 
 @stop

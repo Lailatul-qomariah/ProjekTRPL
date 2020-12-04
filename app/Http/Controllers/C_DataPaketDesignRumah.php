@@ -18,6 +18,10 @@ class C_DataPaketDesignRumah extends Controller
     {
         return view('Designer.v_formTambahPaketDesign');
     }
+    public function createPesananRumah(m_DataPaketDesign $m_DataPaketDesign)
+    {
+        return view ('User.v_fpdesignrumah',compact('m_DataPaketDesign'));
+    }
 
     public function store(Request $request)
     {
