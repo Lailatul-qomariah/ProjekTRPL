@@ -35,13 +35,14 @@ class CPaketDesign extends Controller
     {
 
         $this->validate($request,[
-              'NamaPaket' => 'required',
-              'Kategori' => 'required',
-              'JenisRuang' => 'required',
+              'NamaPaket' => 'required|max:50',
+              'Kategori' => 'required|max:10',
+              'JenisRuang' => 'required|max:20',
+              'Luas' => 'required|numeric|between:1,9999999999',
+              'TinggiRuang' => 'required|numeric|between:1,9999999999',
+              'RangeHarga' => 'required|numeric|between:1,9999999999',
+              'WaktuPembuatan' => 'required|numeric|between:1,9999999999',
               'Keterangan' => 'required',
-              'Luas' => 'required|numeric',
-              'RangeHarga' => 'required',
-              'TinggiRuang' => 'required|numeric',
               'Gambar' => 'required|mimes:jpg,jpeg,png,webp'
         ]);
         // cara 1
@@ -58,10 +59,12 @@ class CPaketDesign extends Controller
         $paketdesign -> Keterangan = $request -> Keterangan;
         $paketdesign -> Gambar = $namagambar;
         $paketdesign -> WaktuPembuatan = $request -> WaktuPembuatan;
+        $paketdesign -> DesignerI = auth()->user()->id;
+
 
         $gambar->move(public_path().'/assets/images',$namagambar);
         $paketdesign->save();
-        // dd($request);
+        // dd($paketdesign);
 
         //cara2
         // paketdesign::create([
@@ -82,11 +85,12 @@ class CPaketDesign extends Controller
     }
 
 
-    public function show(paketdesign $paketdesign)
+    public function show(paketdesign $paketdesign, User $User)
     {
-
-        return view('Designer.detailpaket', ['paketdesign' => $paketdesign]);
-        // dd( $paketdesign);
+      $User = User::all()
+      ->where('id','=', $paketdesign->DesignerI)->first();
+        return view('Designer.detailpaket', ['paketdesign' => $paketdesign , 'User' => $User]);
+        dd( $paketdesign);
 
     }
 
@@ -99,7 +103,15 @@ class CPaketDesign extends Controller
     public function update(Request $request, paketdesign $paketdesign)
     {
       $this->validate($request,[
-            'Gambar' => 'mimes:jpg,jpeg,png,webp'
+          'NamaPaket' => 'required|max:50',
+          'Kategori' => 'required|max:10',
+          'JenisRuang' => 'required|max:20',
+          'Luas' => 'required|numeric|between:1,9999999999',
+          'TinggiRuang' => 'required|numeric|between:1,9999999999',
+          'RangeHarga' => 'required|numeric|between:1,9999999999',
+          'WaktuPembuatan' => 'required|numeric|between:1,9999999999',
+          'Keterangan' => 'required',
+          'Gambar' => 'mimes:jpg,jpeg,png,webp'
       ]);
       $updatepaket = paketdesign::find($paketdesign->IdPaket);
       $updatepaket->update($request->all());

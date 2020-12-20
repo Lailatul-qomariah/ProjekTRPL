@@ -11,24 +11,24 @@
         <div class="card-body">
           <h5 class="card-title">{{ $paketdesign->NamaPaket}}</h5>
           <p class="card-text">{{ $paketdesign->Keterangan}}</p>
-        </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"> Kategori      : {{ $paketdesign->Kategori}}</li>
-          <li class="list-group-item"> Jenis Ruangan : {{ $paketdesign->JenisRuang}}</li>
-          <li class="list-group-item">Luas Ruangan   : {{ $paketdesign->Luas}}</li>
-          <li class="list-group-item">Tinggi Ruangan : {{ $paketdesign->TinggiRuang}}</li>
+          <li class="list-group-item">Kategori      : {{ $paketdesign->Kategori}}</li>
+          <li class="list-group-item">Jenis Ruangan : {{ $paketdesign->JenisRuang}}</li>
+          <li class="list-group-item">Luas Ruangan   : {{ $paketdesign->Luas}}m</li>
+          <li class="list-group-item">Tinggi Ruangan : {{ $paketdesign->TinggiRuang}}m</li>
           <li class="list-group-item">Range Harga    : {{ $paketdesign->RangeHarga}}</li>
-          <li class="list-group-item">Waktu Pembuatan: {{ $paketdesign->WaktuPembuatan}}</li>
+          <li class="list-group-item">Waktu Pembuatan: {{ $paketdesign->WaktuPembuatan}} hari</li>
+          <a href="/profilDesigner/{{$User->id}}">
+          <li class="list-group-item">Nama Designer  : {{ $User->name }} {{ $User->last_name }} </li></a>
         </ul>
 
-        <!-- edit data -->
-        <!-- <div class="col-md-1"></div> -->
         @if (auth()->user()->role == 'Designers')
-        <a href="{{$paketdesign->IdPaket}}/edit" class="btn btn-primary col-md-4">Edit Data</a>
+        <a href="{{$paketdesign->IdPaket}}/edit" class="btn btn-primary col-md-4">Ubah</a>
         @endif
         @if (auth()->user()->role == 'Customers')
-        <a href="/fpdesigninterior/{{$paketdesign->IdPaket}}" class="btn btn-primary col-md-4">Pesan Paket</a>
+        <a href="/fpdesigninterior/{{$paketdesign->IdPaket}}" class="btn btn-primary col-md-4">Pesan Paket Ini</a>
         @endif
+      </div>
 
         <!-- <a href="/paketdesign" class="btn btn-danger col-md-4">Batalkan</a> -->
         <!-- Hapus data

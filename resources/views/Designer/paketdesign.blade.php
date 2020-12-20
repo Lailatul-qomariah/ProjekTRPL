@@ -28,7 +28,7 @@
             <ul class="property_list">
               <li><span class="flaticon-bed">Luas : {{ $paketdesign->Luas }} </span></li>
               <li><span class="flaticon-floor-plan"></span>Tinggi :{{ $paketdesign->TinggiRuang }} </li>
-              
+
             </ul>
           </div>
         </div>
@@ -36,7 +36,7 @@
       @endforeach
     </div>
     @if (auth()->user()->role == 'Designers')
-    <a href="/paketdesign/create" class="btn btn-primary py-3 px-4">Tambah Data</a>
+    <a href="/paketdesign/create" class="btn btn-primary py-3 px-4">Tambah</a>
     @endif
   </div>
 </section>

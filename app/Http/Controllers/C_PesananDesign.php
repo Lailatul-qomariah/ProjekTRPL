@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\m_PesananDesign;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Carbon;
 
 class C_PesananDesign extends Controller
 {
@@ -13,21 +14,19 @@ class C_PesananDesign extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexSudahBayar()
+    public function indexProsesDesign()
     {
         $m_PesananDesign = m_PesananDesign::
                         leftjoin('datapaketdesigns','datapaketdesigns.idPaketRumah','=','pesanandesigns.IdPaketRumah')
                          -> leftjoin('paketdesigns','paketdesigns.IdPaket','=','pesanandesigns.IdPaket')
                          -> leftjoin('users','users.id','=','pesanandesigns.IdUSer')
-                         -> select('pesanandesigns.*',
-                         'users.name', 'users.email',
-                         'paketdesigns.NamaPaket', 'paketdesigns.RangeHarga',
-                         'datapaketdesigns.NamaPaketRumah','datapaketdesigns.RangeHarga')
+                         -> select('pesanandesigns.*','paketdesigns.NamaPaket', 'datapaketdesigns.NamaPaketRumah',)
                          -> where('users.id','=', auth()->user()->id)
-                         -> where('pesanandesigns.StatusPembayaran','=', 'Belum')
+                         -> where('pesanandesigns.StatusPembayaran','=', 'Sudah')
+                         -> where('pesanandesigns.StatusPesanan','=', 'Proses')
                         -> get();
-
-      return view('User.pesanan', compact('m_PesananDesign'));
+                        // dd($m_PesananDesign);
+      return view('User.v_ProsesDesign', compact('m_PesananDesign'));
 
     }
 
@@ -37,21 +36,66 @@ class C_PesananDesign extends Controller
                         leftjoin('datapaketdesigns','datapaketdesigns.idPaketRumah','=','pesanandesigns.IdPaketRumah')
                          -> leftjoin('paketdesigns','paketdesigns.IdPaket','=','pesanandesigns.IdPaket')
                          -> leftjoin('users','users.id','=','pesanandesigns.IdUSer')
-                         -> select('pesanandesigns.*',
-                         'users.name', 'users.email',
-                         'paketdesigns.NamaPaket', 'paketdesigns.RangeHarga',
-                         'datapaketdesigns.NamaPaketRumah','datapaketdesigns.RangeHarga')
+                         -> select('pesanandesigns.*','paketdesigns.NamaPaket', 'datapaketdesigns.NamaPaketRumah',)
+                         -> where('users.id','=', auth()->user()->id)
+                         -> where('pesanandesigns.StatusPembayaran','=', 'Belum')
+                         -> where('pesanandesigns.StatusPesanan','=', 'Belum')
+                        -> get();
+      return view('User.pesanan', compact('m_PesananDesign'));
+    }
+
+    public function indexSelesaiDesign()
+    {
+        $m_PesananDesign = m_PesananDesign::
+                        leftjoin('datapaketdesigns','datapaketdesigns.idPaketRumah','=','pesanandesigns.IdPaketRumah')
+                         -> leftjoin('paketdesigns','paketdesigns.IdPaket','=','pesanandesigns.IdPaket')
+                         -> leftjoin('users','users.id','=','pesanandesigns.IdUSer')
+                         -> select('pesanandesigns.*','paketdesigns.NamaPaket','datapaketdesigns.NamaPaketRumah',)
                          -> where('users.id','=', auth()->user()->id)
                          -> where('pesanandesigns.StatusPembayaran','=', 'Sudah')
+                         -> where('pesanandesigns.StatusPesanan','=', 'Selesai')
                         -> get();
-      return view('User.SudahBayar', compact('m_PesananDesign'));
+
+      return view('User.v_selesai', compact('m_PesananDesign'));
 
     }
 
+    public function indexDibatalkan()
+    {
+        $m_PesananDesign = m_PesananDesign::
+                        leftjoin('datapaketdesigns','datapaketdesigns.idPaketRumah','=','pesanandesigns.IdPaketRumah')
+                         -> leftjoin('paketdesigns','paketdesigns.IdPaket','=','pesanandesigns.IdPaket')
+                         -> leftjoin('users','users.id','=','pesanandesigns.IdUSer')
+                         -> select('pesanandesigns.*','paketdesigns.NamaPaket','datapaketdesigns.NamaPaketRumah',)
+                         -> where('users.id','=', auth()->user()->id)
+                         -> where('pesanandesigns.StatusPembayaran','=', 'Sudah')
+                         -> where('pesanandesigns.StatusPesanan','=', 'Batal')
+                        -> get();
+
+      return view('User.v_Dibatalkan', compact('m_PesananDesign'));
+
+    }
+
+    public function BatalkanPesanan(Request $request, m_PesananDesign $m_PesananDesign)
+    {
+
+      $m_PesananDesign = m_PesananDesign::find($m_PesananDesign->IdPesanan);
+      $m_PesananDesign->StatusPesanan = 'Batal';
+      $m_PesananDesign->save();
+      return redirect('/pesananDibatalkan');
+      // dd($m_PesananDesign);
+    }
 
 
     public function storeInterior(Request $request)//storerumah
     {
+      $this->validate($request,[
+            'JenisRuangan' => 'required|max:50',
+            'LuasRuangan' => 'required|numeric|between:1,9999999999',
+            'TinggiRuangan' => 'required|numeric|between:1,9999999999',
+            'Keterangan' => 'required',
+            'Gambar' => 'required|mimes:jpg,jpeg,png,webp',
+      ]);
 
       $m_PesananDesign = m_PesananDesign::create($request->all());
 
@@ -74,6 +118,15 @@ class C_PesananDesign extends Controller
 
     public function store(Request $request)//storerumah
     {
+
+      $this->validate($request,[
+            'LuasBangunan' => 'required|numeric|between:1,9999999999',
+            'JumlahLantai' => 'required|numeric|between:1,9999999999',
+            'TinggiBangunan' => 'required|numeric|between:1,9999999999',
+            'JumlahKamar' => 'required|numeric|between:1,9999999999',
+            'Keterangan' => 'required',
+            'Gambar' => 'required|mimes:jpg,jpeg,png,webp'
+      ]);
 
       $m_PesananDesign = m_PesananDesign::create($request->all());
       if ($request->Hargatotal){
@@ -128,28 +181,28 @@ class C_PesananDesign extends Controller
       }
     }
 
-
-    public function show(m_PesananDesign $m_PesananDesign)
-    {
-        //
-    }
-
-
-    public function edit(m_PesananDesign $m_PesananDesign)
-    {
-        //
-    }
-
-    public function update(Request $request, m_PesananDesign $m_PesananDesign)
-    {
-        //
-    }
-
-
     public function destroy(m_PesananDesign $m_PesananDesign)
     {
+
       m_PesananDesign::destroy($m_PesananDesign->IdPesanan);
       return redirect('/pesananBayar')->with('status', 'Data Berhasil DIHAPUS!!');
-      // return $paketdesign;
+
+    }
+
+    public function RiwayatPemesanan()
+    {
+
+      $m_PesananDesign = m_PesananDesign::
+                      leftjoin('datapaketdesigns','datapaketdesigns.idPaketRumah','=','pesanandesigns.IdPaketRumah')
+                       -> leftjoin('paketdesigns','paketdesigns.IdPaket','=','pesanandesigns.IdPaket')
+                       -> leftjoin('users','users.id','=','pesanandesigns.IdUSer')
+                       -> select('pesanandesigns.*',
+                       'paketdesigns.NamaPaket','datapaketdesigns.NamaPaketRumah')
+                       -> Where('pesanandesigns.StatusPesanan','=', 'Selesai')
+                       -> orWhere('pesanandesigns.StatusPesanan','=', 'Batal')
+                      -> get();
+
+        return view('Designer.v_RiwayatPemesanan', compact('m_PesananDesign'));
+        // dd($waktu);
     }
 }

@@ -8,6 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+
+    public function m_DataPaketDesign(){
+      return $this->hasMany('App\m_DataPaketDesign');
+    }
+
     use Notifiable;
 
     /**
@@ -15,8 +20,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+     protected $table = 'Users';
+     protected $primaryKey = 'id';
     protected $fillable = [
-        'id','name', 'email','last_name','phone' ,'password','role'
+      'name', 'email','last_name','phone' ,'password','role', 'biodata', 'foto'
     ];
 
     /**

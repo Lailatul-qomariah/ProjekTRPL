@@ -35,7 +35,7 @@
       @endforeach
     </div>
     @if (auth()->user()->role == 'Designers')
-    <a href="/designrumah/create" class="btn btn-primary py-3 px-4">Tambah Data</a>
+    <a href="/designrumah/create" class="btn btn-primary py-3 px-4">Tambah</a>
     @endif
   </div>
 </section>

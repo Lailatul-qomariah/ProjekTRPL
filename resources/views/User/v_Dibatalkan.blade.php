@@ -25,30 +25,19 @@
             @if($pesanan->IdPaketRumah == null)
             <h3 class="mb-0">Jenis Ruangan : {{ $pesanan->Jenisruangan }}</h3>
             @endif
-            <h3 class="mb-0">Luas Bangun / Ruang : {{ $pesanan->Luasruangan }}{{ $pesanan->LuasBangunan }}</h3>
-            <h3 class="mb-0">Tinggi Bangun / Ruang : {{ $pesanan->TinggiRuangan }}{{ $pesanan->TinggiBangunan }}</h3>
+            <h3 class="mb-0">Luas Bangun / Ruang : {{ $pesanan->Luasruangan }}{{ $pesanan->LuasBangunan }}m</h3>
+            <h3 class="mb-0">Tinggi Bangun / Ruang : {{ $pesanan->TinggiRuangan }}{{ $pesanan->TinggiBangunan }}m</h3>
             <h3 class="mb-0">Status Pembayaran : {{ $pesanan->StatusPembayaran }}</h3>
             <h3 class="mb-0">Status Pesanan : {{ $pesanan->StatusPesanan }}</h3>
             <h3 class="mb-0">Keterangan : {{ $pesanan->Keterangan }}</h3>
-            <!-- <h3 class="mb-0">Keterangan Verifikasi : {{ $pesanan->Kete }}</h3> -->
             <ul class="property_list">
               @if($pesanan->IdPaket == null)
               <li><span class="flaticon-bed">Jumlah Kamar : {{ $pesanan->JumlahKamar }} </span></li>
               <li><span class="flaticon-floor-plan"></span>Jumlah Lantai :{{ $pesanan->JumlahLantai }} </li>
               @endif
             </ul>
-            <p class="price mb-3"><span class="orig-price">Jumlah Bayar : {{ $pesanan->Hargatotal }}</span></p>
-            <form action="/pesanan/{{ $pesanan->IdPesanan }}" method="POST">
-            @method('delete')
-            @csrf
-            @if($pesanan->StatusPembayaran == 'Belum')
-            <a href="{{$pesanan->PaymentUrl}}" class="btn btn-primary py-3 px-4">Bayar Sekarang</a>
-            <button type="submit" class="btn btn-danger py-3 px-4"> Hapus</button>
-            @endif
-          </form>
-          <!-- @if($pesanan->StatusPembayaran == 'Sudah')
-          <h2>Sudah DIbayarkan</h2>
-          @endif -->
+            <p class="price mb-3"><span class="orig-price text-danger">Pesanan Telah Dibatalkan</span></p>
+
           </div>
         </div>
       </div>

@@ -31,8 +31,10 @@ class CreatePesanandesignsTable extends Migration
             $table->string('Gambar')->nullable();
             $table->text('Keterangan')->nullable();
             $table->enum('StatusPembayaran', ['Belum', 'Sudah']);
-            $table->enum('StatusPesanan',['Belum','Proses','Selesai']);
+            $table->enum('StatusPesanan',['Belum','Proses','Selesai', 'Batal']);
             $table->text('KetVerifikasi')->nullable();
+            $table->date('deadline')->nullable();
+            $table->Integer('WaktuTotal')->nullable();
             $table->timestamps();
         });
 

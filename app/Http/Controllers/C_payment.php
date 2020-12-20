@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\m_payment;
 use App\m_PesananDesign;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class C_payment extends Controller
 {
@@ -27,10 +28,6 @@ class C_payment extends Controller
   		$statusCode = null;
       //
   		$paymentNotification = new \Midtrans\Notification();
-      // //
-  		// if ($pesanan->StatusPembayaran = 'Sudah') {
-  		// 	return response(['message' => 'The order has been paid before'], 422);
-  		// }
 
   		$transaction = $paymentNotification->transaction_status;
   		$type = $paymentNotification->payment_type;
@@ -98,6 +95,7 @@ class C_payment extends Controller
   					if (in_array($payment->Status, [m_payment::SUCCESS, m_payment::SETTLEMENT])) {
   						$pesanan->StatusPembayaran = m_PesananDesign::PAID;
               $pesanan->StatusPesanan = 'Proses';
+              $pesanan->deadline =  Carbon::now()->addDays($pesanan->WaktuTotal)->format('Y-m-d H:i:s');
   						$pesanan->save();
   					}
   				}

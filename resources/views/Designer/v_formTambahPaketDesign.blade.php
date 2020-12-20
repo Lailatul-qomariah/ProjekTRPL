@@ -8,6 +8,7 @@
   <div class="col-md-6 align-items-stretch d-flex">
     <form method="POST" action="/designrumah" class="bg-light p-5 contact-form" enctype="multipart/form-data">
       @csrf
+      <input type="text" name="DesignerR" value="{{auth()->user()->id}}" hidden>
       <div class="form-group{{$errors->has('NamaPaketRumah') ? 'has-error' : ''}}">
         <label for="NamaPaketRumah"> Masukkan Nama Paket Design Rumah Anda :</label>
         <input type="text" class="form-control" placeholder="Contoh : Paket Hemat" name="NamaPaketRumah"
@@ -57,7 +58,7 @@
       </div>
 
       <div class="form-group{{$errors->has('LuasBangun') ? 'has-error' : ''}}">
-        <label for="LuasBangun"> Masukkan Luas Bangunan :</label>
+        <label for="LuasBangun"> Masukkan Luas Bangunan (dalam satuan m):</label>
         <input type="text" class="form-control" placeholder="Contoh : 7" name="LuasBangun"
         value="{{old('LuasBangun')}}">
         @if($errors->has('LuasBangun'))
@@ -105,7 +106,7 @@
       </div>
 
       <div class="form-group{{$errors->has('TinggiBangun') ? 'has-error' : ''}}">
-        <label for="TinggiBangun"> Masukkan Tinggi Ruangan :</label>
+        <label for="TinggiBangun"> Masukkan Tinggi Ruangan(dalam satuan m) :</label>
         <input type="text" name="TinggiBangun" class="form-control" placeholder="Contoh : 7"
         value="{{old('TinggiBangun')}}">
         @if($errors->has('TinggiBangun'))
@@ -153,8 +154,8 @@
       </div>
 
       <div class="form-group{{$errors->has('RangeHarga') ? 'has-error' : ''}}">
-        <label for="RangeHarga"> Masukkan Range Harga :</label>
-        <input type="text" name="RangeHarga" class="form-control" placeholder="Contoh : 10-20"
+        <label for="RangeHarga"> Masukkan Harga :</label>
+        <input type="text" name="RangeHarga" class="form-control" placeholder="Contoh : 1000000"
         value="{{old('RangeHarga')}}">
         @if($errors->has('RangeHarga'))
         <button data-toggle="modal" data-target="#myModal3" style="display:none;" class="but"></button>
@@ -165,7 +166,7 @@
                           <h4 class="modal-title" id="myModalLabel">Data Tidak Boleh Kosong</h4>
                       </div>
                       <div class="modal-body">
-                          <h4>Masukkan Range Harga Paket Design Rumah Dengan Benar</h4>
+                          <h4>Data Harga Paket Harus Berupa Angka</h4>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -177,8 +178,8 @@
       </div>
 
       <div class="form-group{{$errors->has('WaktuPembuatan') ? 'has-error' : ''}}">
-        <label for="WaktuPembuatan"> Masukkan Waktu Pembuatan :</label>
-        <input type="text" name="WaktuPembuatan" class="form-control" placeholder="Contoh : 10-20 hari"
+        <label for="WaktuPembuatan"> Masukkan Waktu Pembuatan(dalam satuan hari) :</label>
+        <input type="text" name="WaktuPembuatan" class="form-control" placeholder="Contoh : 10"
         value="{{old('WaktuPembuatan')}}">
         @if($errors->has('WaktuPembuatan'))
         <button data-toggle="modal" data-target="#myModal3" style="display:none;" class="but"></button>
@@ -189,7 +190,7 @@
                           <h4 class="modal-title" id="myModalLabel">Data Tidak Boleh Kosong</h4>
                       </div>
                       <div class="modal-body">
-                          <h4>Masukkan Waktu Pembuatan Design Rumah Dengan Benar</h4>
+                          <h4>Data Waktu Pembuatan Harus Berupa Angka</h4>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -247,7 +248,7 @@
         @endif
       </div>
       <div class="form-group">
-        <input type="submit" value="Simpan" class="btn btn-primary py-3 px-5">
+        <input type="submit" value="Selesai" class="btn btn-primary py-3 px-5">
         <a href="/designrumah" class="btn btn-danger py-3 px-5"> Batalkan</a>
       </div>
 

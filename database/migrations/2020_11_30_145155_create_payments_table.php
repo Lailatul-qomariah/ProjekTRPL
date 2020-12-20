@@ -30,6 +30,12 @@ class CreatePaymentsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
+
+        Schema::table('payments', function (Blueprint $table) {
+            $table->foreign('IdPesanan')->references('IdPesanan')->on('pesanandesigns')
+            ->onDelete('cascade')->onUpdate('cascade');
+
+        });
     }
 
     /**

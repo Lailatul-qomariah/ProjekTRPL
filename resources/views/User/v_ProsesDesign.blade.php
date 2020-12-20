@@ -25,12 +25,11 @@
             @if($pesanan->IdPaketRumah == null)
             <h3 class="mb-0">Jenis Ruangan : {{ $pesanan->Jenisruangan }}</h3>
             @endif
-            <h3 class="mb-0">Luas Bangun / Ruang : {{ $pesanan->Luasruangan }}{{ $pesanan->LuasBangunan }}</h3>
-            <h3 class="mb-0">Tinggi Bangun / Ruang : {{ $pesanan->TinggiRuangan }}{{ $pesanan->TinggiBangunan }}</h3>
+            <h3 class="mb-0">Luas Bangun / Ruang : {{ $pesanan->Luasruangan }}{{ $pesanan->LuasBangunan }}m</h3>
+            <h3 class="mb-0">Tinggi Bangun / Ruang : {{ $pesanan->TinggiRuangan }}{{ $pesanan->TinggiBangunan }}m</h3>
             <h3 class="mb-0">Status Pembayaran : {{ $pesanan->StatusPembayaran }}</h3>
             <h3 class="mb-0">Status Pesanan : {{ $pesanan->StatusPesanan }}</h3>
             <h3 class="mb-0">Keterangan : {{ $pesanan->Keterangan }}</h3>
-            <!-- <h3 class="mb-0">Keterangan Verifikasi : {{ $pesanan->Kete }}</h3> -->
             <ul class="property_list">
               @if($pesanan->IdPaket == null)
               <li><span class="flaticon-bed">Jumlah Kamar : {{ $pesanan->JumlahKamar }} </span></li>
@@ -39,6 +38,14 @@
             </ul>
             <p class="price mb-3"><span class="orig-price">Jumlah Bayar : {{ $pesanan->Hargatotal }}</span></p>
             <p class="price mb-3"><span class="orig-price">Sudah Di Bayar, Dalam Proses Design</span></p>
+
+            @if ($pesanan->deadline == Carbon\Carbon::now()->format("Y-m-d") )
+            <form action="/pesananDibatalkan/{{ $pesanan->IdPesanan }}" method="POST">
+              @method('patch')
+              @csrf
+              <button type="submit" class="btn btn-danger py-3 px-4"> Batalkan Pesanan</button>
+            </form>
+            @endif
           </div>
         </div>
       </div>

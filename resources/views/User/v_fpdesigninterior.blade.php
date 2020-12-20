@@ -10,6 +10,7 @@
       <input type="text" name="IdPaket" value="{{ $paketdesign->IdPaket}}" hidden>
       <input type="text" name="IdUSer" value="{{auth()->user()->id}}" hidden>
       <input type="text" name="Hargatotal" value="{{$paketdesign->RangeHarga }}" hidden>
+      <input type="text" name="WaktuTotal" value="{{$paketdesign->WaktuPembuatan }}" hidden>
       <div class="form-group{{$errors->has('JenisRuangan') ? 'has-error' : ''}}">
         <label for="JenisRuangan"> Masukkan Jenis Ruangan Yang Diinginkan :</label>
         <input type="text" class="form-control" placeholder="Contoh : Paket Hemat" name="JenisRuangan"
@@ -36,7 +37,7 @@
 
       <div class="form-group{{$errors->has('LuasRuangan') ? 'has-error' : ''}}">
         <label for="LuasRuangan"> Masukkan Luas Ruangan Design Interior Anda :</label>
-        <input type="text" class="form-control" placeholder="Contoh : Minimalis " name="LuasRuangan"
+        <input type="text" class="form-control" placeholder="Contoh : 8 " name="LuasRuangan"
         value="{{old('LuasRuangan')}}">
         @if($errors->has('LuasRuangan'))
         <button data-toggle="modal" data-target="#myModal3" style="display:none;" class="but"></button>
@@ -47,7 +48,7 @@
                           <h4 class="modal-title" id="myModalLabel">Data Tidak Boleh Kosong</h4>
                       </div>
                       <div class="modal-body">
-                          <h4>Masukkan Luas Ruangan Design Interior Dengan Benar</h4>
+                          <h4>Data Luas Ruangan Harus Berupa Angka</h4>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -71,7 +72,7 @@
                           <h4 class="modal-title" id="myModalLabel">Data Tidak Boleh Kosong</h4>
                       </div>
                       <div class="modal-body">
-                          <h4>Data Luas Ruangan Harus Berupa Angka </h4>
+                          <h4>Data Tinggi Ruangan Harus Berupa Angka </h4>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

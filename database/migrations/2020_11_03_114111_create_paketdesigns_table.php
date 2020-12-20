@@ -15,13 +15,14 @@ class CreatePaketdesignsTable extends Migration
     {
         Schema::create('paketdesigns', function (Blueprint $table) {
             $table->bigIncrements('IdPaket');
-            $table->string('NamaPaket');
-            $table->string('Kategori');
-            $table->string('JenisRuang');
-            $table->string('Luas');
-            $table->string('TinggiRuang');
+            $table->Integer('DesignerI');
+            $table->string('NamaPaket', 50);
+            $table->string('Kategori', 10);
+            $table->string('JenisRuang', 20);
+            $table->string('Luas', 10);
+            $table->string('TinggiRuang', 10);
             $table->bigInteger('RangeHarga');
-            $table->string('Keterangan');
+            $table->text('Keterangan');
             $table->string('Gambar');
             $table->Integer('WaktuPembuatan');
             $table->timestamps();

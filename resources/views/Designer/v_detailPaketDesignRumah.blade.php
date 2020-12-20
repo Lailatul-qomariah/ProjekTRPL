@@ -15,19 +15,21 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item"> Kategori      : {{ $m_DataPaketDesign->KetegoriRumah}}</li>
           <li class="list-group-item"> Luas Bangunan : {{ $m_DataPaketDesign->LuasBangun}}m</li>
-          <li class="list-group-item"> Jumlah Lantai : {{ $m_DataPaketDesign->JumlahLantai}}</li>
+          <li class="list-group-item"> Jumlah Lantai : {{ $m_DataPaketDesign->JumlahLantai}} Lantai</li>
           <li class="list-group-item">Tinggi Ruangan : {{ $m_DataPaketDesign->TinggiBangun}}m</li>
           <li class="list-group-item">Luas Ruangan   : {{ $m_DataPaketDesign->JumlahKamar}}m</li>
           <li class="list-group-item">Range Harga    : {{ $m_DataPaketDesign->RangeHarga}}</li>
-          <li class="list-group-item">Waktu Pembuatan: {{ $m_DataPaketDesign->WaktuPembuatan}}</li>
-        </ul>
+          <li class="list-group-item">Waktu Pembuatan: {{ $m_DataPaketDesign->WaktuPembuatan}} hari</li>
+          <a href="/profilDesigner/{{$User->id}}">
+          <li class="list-group-item">Nama Designer  : {{ $User->name }} {{ $User->name }}</li></a>
         @if (auth()->user()->role == 'Designers')
-        <a href="/designrumah/{{$m_DataPaketDesign->idPaketRumah}}/edit" class="btn btn-primary col-md-4">Edit Data</a>
+        <a href="/designrumah/{{$m_DataPaketDesign->idPaketRumah}}/edit" class="btn btn-primary col-md-4">Ubah</a>
         @endif
 
         @if (auth()->user()->role == 'Customers')
-        <a href="/fpdesignrumah/{{$m_DataPaketDesign->idPaketRumah}}" class="btn btn-primary col-md-4">Pesan Paket</a>
+        <a href="/fpdesignrumah/{{$m_DataPaketDesign->idPaketRumah}}" class="btn btn-primary col-md-4">Pesan Paket Ini</a>
         @endif
+      </ul>
       </div>
     </div>
   </div>

@@ -30,22 +30,33 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="{{route ('dashboard')}}" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="{{route ('designrumah')}}" class="nav-link">Design rumah</a></li>
-	          <li class="nav-item"><a href="{{route('paketdesign1')}}" class="nav-link">Design Interior</a></li>
-            @if (auth()->user()->role == 'Customers')
+	          <li class="nav-item"><a href="{{route ('dashboard')}}" class="nav-link">Dashboard</a></li>
+	          <li class="nav-item"><a href="{{route ('designrumah')}}" class="nav-link">Paket Design rumah</a></li>
+	          <li class="nav-item"><a href="{{route('paketdesign1')}}" class="nav-link">Paket Design Interior</a></li>
+
             <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle"
                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Pesanan<span class="caret"></span></a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  @if (auth()->user()->role == 'Designers')
+                  <a href="{{route ('riwayatpesanan') }}" class="dropdown-item" >
+                      Riwayat Pesanan
+                  </a>
+                  @endif
+                  @if (auth()->user()->role == 'Customers')
                   <a href="{{route ('pesananBayar') }}" class="dropdown-item" >
-                      Belum Dibayar
+                      Belum Dipesan
                   </a>
                   <a href="{{route ('pesananProses') }}" class="dropdown-item" >
                     Dalam Proses
                   </a>
+                  <a href="{{route ('pesananSelesai') }}" class="dropdown-item" >
+                    Selesai
+                </a>
+                <a href="{{route ('pesananDibatalkan')}}" class="dropdown-item" >
+                  Dibatalkan
+              </a>
+              @endif
             </li>
-            @endif
 	           @guest
              <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                 @if (Route::has('register'))
@@ -60,12 +71,14 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <a href="{{route ('profilsaya')}}" class="dropdown-item" >
+                            Profil Saya
+                          </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
